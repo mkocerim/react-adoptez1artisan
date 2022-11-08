@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../components/Hooks/useApi";
+import Category from "./components/category";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
@@ -23,16 +24,8 @@ const Home = () => {
       <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {categories.map((category) => {
           return (
-            <div className="col">
-              <div className="card mb-4 rounded-3 shadow-sm border-primary">
-                <div className="card-header py-3 test-whıte bg-primary border-primary">
-                  <h4 className="my-0 fw-normal">{category.name} </h4>
-                </div>
-                <div className="card-body">
-                  <img src={category.image} style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
+            <Category category={category.} />
+            
           );
         })}
       </div>
