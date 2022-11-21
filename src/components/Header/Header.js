@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import useApi from "../Hooks/useApi";
 
-const Header = () => {
+
+const Header = (props) => {
+  console.log(">> Header props:", props)
   const api = useApi();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if(token){
-    api
-      .get("user/AppData")
-      .then((response) => {
-        console.log(">>APP DATA RESP", response);
-        setUser(response.data.data.user);
-      })
-      .catch((err) => {
-        console.log(">>ERR", err);
-      })
+    if (token) {
+      api
+        .get("user/AppData")
+        .then((response) => {
+          console.log(">>APP DATA RESP", response);
+          setUser(response.data.data.user);
+        })
+        .catch((err) => {
+          console.log(">>ERR", err);
+        });
     }
   }, []);
   const onLogoutBtnClick = () => {
@@ -46,25 +49,25 @@ const Header = () => {
         >
           <span className="fs-4">Api Tutorial</span>
         </a>
-
+        Token: {props.authState.token}
         {user ? (
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <strong className="me-2 py-2">{user.fullname}</strong>
-            <a className="btn btn-primary me-2 py-2" href="#/register">
+            <button
+              className="btn btn-primary me-2 py-2"
+              onClick={onLogoutBtnClick}
+            >
               LogOut
-            </a>
+            </button>
           </nav>
         ) : (
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <a className="btn btn-primary me-3 py-2" href="#/login">
               Login
             </a>
-            <button
-              className="btn btn-primary  py-2"
-              onClick={onLogoutBtnClick()}
-            >
+            <a className="btn btn-primary  py-2" href="#/register">
               Register
-            </button>
+            </a>
           </nav>
         )}
       </div>
@@ -72,4 +75,11 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToPropsFunc=(state)=>{
+  console.log(">> MAP STATE", state)
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToPropsFunc)(Header);

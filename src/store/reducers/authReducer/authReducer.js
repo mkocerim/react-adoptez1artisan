@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 
 const initialState = {
-  token:"",
+  token:null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -12,6 +12,7 @@ const authReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case "set_token":
+      console.log('AUTH REDUCER SET TOKEN',action.payload)
       return {
         ...state,
         token: action.payload.token,

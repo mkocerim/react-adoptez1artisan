@@ -3,10 +3,12 @@ import Header from "./components/Header/Header";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import CategoryDetail from "./pages/category_details/category_detail.js"
+import CategoryDetail from "./pages/category_details/category_detail.js";
 import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
 import useApi from "./components/Hooks/useApi";
 import ServiceBox from "./pages/category_details/components/service_box";
+import {REMOVE_APP_DATA, SET_APP_DATA} from '.store/reducers/appDataReducer'
+import {REMOVE_TOKEN} from './store/reducers/authReducer'
 
 function App() {
   return (
@@ -19,8 +21,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="#/category/:slug" element={<CategoryDetail />} />
-          <Route path="#/service/:slug" element={<ServiceBox/>} />
-
+          <Route path="#/service/:slug" element={<ServiceBox />} />
         </Routes>
       </HashRouter>
       <Footer />
