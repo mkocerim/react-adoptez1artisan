@@ -7,7 +7,7 @@ const CategoryDetail = () => {
 
   console.log(">>PARAMS", params);
   const api = useApi();
-  const [CategoryDetails, setCategoryDetails] = useState(null);
+  const [CategoryDetails, setCategoryDetails] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

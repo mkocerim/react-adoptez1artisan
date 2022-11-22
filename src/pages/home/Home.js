@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../components/Hooks/useApi";
 import Category from "./components/category";
-import { useStore } from "react-redux";
+import { connect, useDispatch} from "react-redux";
 
-const Home = () => {
+const Home = (props) => {
+
   const [categories, setCategories] = useState([]);
+  console.log('>> HOME COMPONENT CONTENT', props, categories)
+
 
   const api = useApi();
 
-  const store = useStore();
-  console.logg(">>HOME PAGE STORE OBJECT", store, store.getState());
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     api
@@ -23,15 +26,44 @@ const Home = () => {
       });
   }, []);
 
+  const onChange = (e) => {
+    dispatch({
+      type: "set_token",
+      payload: {
+        token: e.target.value,
+      },
+    });
+  };
   return (
     <main>
+      <input type="text" onChange={onChange} />
+      <br/>
+      Token:{props.authState.token}
+      <br/>
       <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {categories.map((category) => {
-          return <Category key={category.id} category={category} />;
+          return <Category key={category.id} categoryProp={category} />;
         })}
       </div>
     </main>
   );
 };
 
-export default Home;
+const mapStateToProps=(state) =>{
+  console.log('>>HOME MAPS STATE', state)
+  /*
+    {
+      appDataState: OBJECT,
+      authState: OBJECT,
+    }
+    */
+  return{
+    authState: state.authState,
+
+    // ...state,
+
+    
+  }
+}
+
+export default connect(mapStateToProps)(Home);
