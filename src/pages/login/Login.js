@@ -1,17 +1,25 @@
 import React, { useState } from "react";
+import { connect, useDispatch } from "react-redux";
 import useApi from "../../components/Hooks/useApi";
+import { SET_TOKEN } from "../../store/reducers/authReducer/authReducer";
 
 const Login = (props) => {
 
-  if(!props.location.href){
-    document.location.href = './#'
-    return
-  }
+console.log('>>LOGIN PAGE PROPS', props)
+
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const api = useApi();
+
+  const dispatch=useDispatch();
+
+  // if(!props.location.href){
+  //   document.location.href = './#'
+  //   return
+  // }
 
   const onLoginBtnClick = () => {
     //alert(`${email} ve ${password}`)
@@ -20,7 +28,7 @@ const Login = (props) => {
       email,
       password,
     };
-    console.log(">> POSTDATA", postData);
+    console.log(">> POST DATA", postData);
 
     api
       .post("auth/login", postData)
@@ -30,10 +38,27 @@ const Login = (props) => {
 
         if (response.data === "success") {
           localStorage.setItem("token", response.data.data.token);
+         
+
+
+          const action ={
+
+            type: SET_TOKEN,
+            payload: {
+
+              token: response.data.data.token
+
+            }
+
+          }
+          props.dispatch(action);
+
+          dispatch(action);
+         
           window.location.href = "/#";
-          setTimeout(() => {
-            window.location.reload();
-          }, 111);
+         
+
+
         } else {
           alert("Hatalı eposta veya şifre girildi.");
         }
@@ -97,4 +122,16 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+
+const mapStateToProps=(state)=>{
+
+  console.log('>>LOGIN MAP STATE',state)
+  return{
+    ...state,
+    // authState: state.authState,
+  }
+
+
+}
+
+export default connect(mapStateToProps)(Login);
