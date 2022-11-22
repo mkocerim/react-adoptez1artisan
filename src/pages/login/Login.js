@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import useApi from "../../components/Hooks/useApi";
 
-const Login = () => {
+const Login = (props) => {
+
+  if(!props.location.href){
+    document.location.href = './#'
+    return
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
