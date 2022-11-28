@@ -85,13 +85,14 @@ function App(props) {
 
   return (
     <AbilityContext.Provider value={clientAbility}>
-      <div className="container py-3">
-        <Header />
-        <HashRouter>
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+    <div className="container py-3">
+      <Header />
+      <Home />
+      <HashRouter>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
             <Route path="category/:slug" element={<CategoryDetail />} />
 
             <Route path="admin" element={<Dashboard/>}>
@@ -99,10 +100,10 @@ function App(props) {
                  <Route path="dashboard" element={<Dashboard />}>
                   
             </Route>
-          </Routes>
-        </HashRouter>
-        <Footer />
-      </div>
+        </Routes>
+      </HashRouter>
+      <Footer />
+    </div>
     </AbilityContext.Provider>
   );
 }
