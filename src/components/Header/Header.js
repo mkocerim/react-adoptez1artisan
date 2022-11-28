@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Can } from "../../ability/can";
 import useApi from "../Hooks/useApi";
 
 
 const Header = (props) => {
   console.log(">> Header props:", props)
   const api = useApi();
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      api
-        .get("user/AppData")
-        .then((response) => {
-          console.log(">>APP DATA RESP", response);
-          setUser(response.data.data.user);
-        })
-        .catch((err) => {
-          console.log(">>ERR", err);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     api
+  //       .get("user/AppData")
+  //       .then((response) => {
+  //         console.log(">>APP DATA RESP", response);
+  //         setUser(response.data.data.user);
+  //       })
+  //       .catch((err) => {
+  //         console.log(">>ERR", err);
+  //       });
+  //   }
+  // }, []);
   const onLogoutBtnClick = () => {
     api
       .get("auth/logout")
@@ -49,15 +50,32 @@ const Header = (props) => {
         >
           <span className="fs-4">Api Tutorial</span>
         </a>
-        Token:{props.useState.token}
-        {user ? (
+
+        {props.appDataState.appData ? (
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <strong className="me-2 py-2">{user.fullname}</strong>
+            <strong className="me-2 py-2">{props.appDataState.appData.user.fullname}</strong>
+           
+           <Can I="manage"a ="all">
+           
+           <button
+              className="btn btn-primary me-2 py-2"
+              onClick={onLogoutBtnClick}
+            >
+              I Can Read User
+
+            </button>
+
+
+           </Can>
+           
+           
+           
             <button
               className="btn btn-primary me-2 py-2"
               onClick={onLogoutBtnClick}
             >
               LogOut
+
             </button>
           </nav>
         ) : (
