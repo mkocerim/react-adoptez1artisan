@@ -55,15 +55,14 @@ const Header = (props) => {
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <strong className="me-2 py-2">{props.appDataState.appData.user.fullname}</strong>
            
-           <Can I="manage"a ="all">
+           <Can I="manage" a ="all">
            
-           <button
-              className="btn btn-primary me-2 py-2"
-              onClick={onLogoutBtnClick}
-            >
-              I Can Read User
+           <a className="btn btn-primary me-2 py-2"
+              href="#/admin/dashboard">
 
-            </button>
+              Admin
+
+            </a>
 
 
            </Can>
