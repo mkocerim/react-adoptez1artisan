@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import { Can } from "../../ability/can";
 import useApi from "../Hooks/useApi";
 
-
 const Header = (props) => {
-  console.log(">> Header props:", props)
+  console.log(">> Header props:", props);
   const api = useApi();
   // const [user, setUser] = useState(null);
 
@@ -53,28 +52,21 @@ const Header = (props) => {
 
         {props.appDataState.appData ? (
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <strong className="me-2 py-2">{props.appDataState.appData.user.fullname}</strong>
-           
-           <Can I="manage" a ="all">
-           
-           <a className="btn btn-primary me-2 py-2"
-              href="#/admin/dashboard">
+            <strong className="me-2 py-2">
+              {props.appDataState.appData.user.fullname}
+            </strong>
 
-              Admin
+            <Can I="manage" a="all">
+              <a className="btn btn-primary me-2 py-2" href="#/admin/dashboard">
+                Admin
+              </a>
+            </Can>
 
-            </a>
-
-
-           </Can>
-           
-           
-           
             <button
               className="btn btn-primary me-2 py-2"
               onClick={onLogoutBtnClick}
             >
               LogOut
-
             </button>
           </nav>
         ) : (
@@ -92,11 +84,11 @@ const Header = (props) => {
   );
 };
 
-const mapStateToPropsFunc=(state)=>{
-  console.log(">> MAP STATE", state)
+const mapStateToPropsFunc = (state) => {
+  console.log(">> MAP STATE", state);
   return {
-    ...state
-  }
-}
+    ...state,
+  };
+};
 
 export default connect(mapStateToPropsFunc)(Header);
