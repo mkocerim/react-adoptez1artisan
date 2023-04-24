@@ -4,17 +4,14 @@ import useApi from "../../components/Hooks/useApi";
 import { SET_TOKEN } from "../../store/reducers/authReducer/authReducer";
 
 const Login = (props) => {
-
-console.log('>>LOGIN PAGE PROPS', props)
-
-
+  console.log(">>LOGIN PAGE PROPS", props);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const api = useApi();
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   // if(!props.location.href){
   //   document.location.href = './#'
@@ -38,27 +35,18 @@ console.log('>>LOGIN PAGE PROPS', props)
 
         if (response.data === "success") {
           localStorage.setItem("token", response.data.data.token);
-         
 
-
-          const action ={
-
+          const action = {
             type: SET_TOKEN,
             payload: {
-
-              token: response.data.data.token
-
-            }
-
-          }
+              token: response.data.data.token,
+            },
+          };
           props.dispatch(action);
 
           dispatch(action);
-         
+
           window.location.href = "/#";
-         
-
-
         } else {
           alert("Hatalı eposta veya şifre girildi.");
         }
@@ -122,16 +110,12 @@ console.log('>>LOGIN PAGE PROPS', props)
   );
 };
 
-
-const mapStateToProps=(state)=>{
-
-  console.log('>>LOGIN MAP STATE',state)
-  return{
+const mapStateToProps = (state) => {
+  console.log(">>LOGIN MAP STATE", state);
+  return {
     ...state,
     // authState: state.authState,
-  }
-
-
-}
+  };
+};
 
 export default connect(mapStateToProps)(Login);
