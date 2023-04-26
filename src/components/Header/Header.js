@@ -91,4 +91,4 @@ const mapStateToPropsFunc = (state) => {
   };
 };
 
-export default connect(mapStateToPropsFunc)(Header);
+export default connect({ mapStateToProps: mapStateToPropsFunc })(Header);

@@ -16,13 +16,13 @@ const authReducer = (state = initialState, action) => {
   //action.payload
 
   switch (action.type) {
-    case SET_TOKEN:
+    case "set_token":
       console.log("AUTH REDUCER SET TOKEN", action.payload);
       return {
         ...state,
         token: action.payload.token,
       };
-    case REMOVE_TOKEN:
+    case "remove_token":
       return {
         ...state,
         token: null,
@@ -32,6 +32,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-const authStore = createStore(authReducer, initialState);
-
-export default authStore;
+export default authReducer;
