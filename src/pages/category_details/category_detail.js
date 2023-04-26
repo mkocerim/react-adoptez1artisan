@@ -6,7 +6,7 @@ import ServiceBox from "./components/service_box";
 const CategoryDetail = () => {
   const params = useParams();
 
-  console.log(">>PARAMS", params);
+  console.log(">>CAT DETAILS PARAMS", params);
 
   const api = useApi();
 

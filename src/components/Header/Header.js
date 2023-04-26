@@ -44,7 +44,7 @@ const Header = (props) => {
     <header>
       <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
         <a
-          href="#/"
+          href="/"
           className="d-flex align-items-center text-dark text-decoration-none"
         >
           <span className="fs-4">Api Tutorial</span>
@@ -84,11 +84,11 @@ const Header = (props) => {
   );
 };
 
-const mapStateToPropsFunc = (state) => {
+const mapStateToProps = (state) => {
   console.log(">> MAP STATE", state);
   return {
     ...state,
   };
 };
 
-export default connect({ mapStateToProps: mapStateToPropsFunc })(Header);
+export default connect(mapStateToProps)(Header);
