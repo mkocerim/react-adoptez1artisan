@@ -92,13 +92,12 @@ function App(props) {
         <HashRouter>
           <Routes>
             <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="category/:slug" element={<CategoryDetail />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/category/:slug" element={<CategoryDetail />} />
 
-            <Route path="admin" element={<Dashboard />}>
-              <Route path="dashboard" element={<Dashboard />} />
-            </Route>
+            <Route path="admin" element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
           </Routes>
         </HashRouter>
         <Footer />

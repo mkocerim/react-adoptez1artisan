@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import useApi from "../../components/Hooks/useApi";
 import { SET_TOKEN } from "../../store/reducers/authReducer/authReducer";
 
@@ -11,7 +11,7 @@ const Login = (props) => {
 
   const api = useApi();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // if(!props.location.href){
   //   document.location.href = './#'
@@ -44,9 +44,9 @@ const Login = (props) => {
           };
           props.dispatch(action);
 
-          dispatch(action);
+          // dispatch(action);
 
-          window.location.href = "/#";
+          window.location.href = "/";
         } else {
           alert("Hatalı eposta veya şifre girildi.");
         }
@@ -114,7 +114,7 @@ const mapStateToProps = (state) => {
   console.log(">>LOGIN MAP STATE", state);
   return {
     ...state,
-    // authState: state.authState,
+    //authState: state.authState,
   };
 };
 
