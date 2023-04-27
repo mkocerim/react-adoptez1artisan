@@ -1,5 +1,3 @@
-import { createStore } from "redux";
-
 const localStorageToken = localStorage.getItem("token");
 
 const initialState = {
@@ -16,13 +14,13 @@ const authReducer = (state = initialState, action) => {
   //action.payload
 
   switch (action.type) {
-    case "set_token":
+    case SET_TOKEN:
       console.log("AUTH REDUCER SET TOKEN", action.payload);
       return {
         ...state,
         token: action.payload.token,
       };
-    case "remove_token":
+    case REMOVE_TOKEN:
       return {
         ...state,
         token: null,

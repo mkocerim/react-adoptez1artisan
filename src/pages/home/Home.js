@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import useApi from "../../components/Hooks/useApi";
 import Category from "./components/category";
 import { connect, useDispatch, useStore } from "react-redux";
-import { SET_TOKEN } from "../../store/reducers/authReducer/authReducer";
 
 const Home = (props) => {
   const [categories, setCategories] = useState([]);
@@ -38,7 +37,7 @@ const Home = (props) => {
     <main>
       <input type="text" onChange={onChange} />
       <br />
-
+      Token:{props.authState.token}
       <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
         {categories.map((category) => {
           return <Category key={category.id} categoryProp={category} />;

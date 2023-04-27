@@ -49,7 +49,7 @@ const Header = (props) => {
         >
           <span className="fs-4">Api Tutorial</span>
         </a>
-
+        Token:{props.authState.token}
         {props.appDataState.appData ? (
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <strong className="me-2 py-2">
@@ -84,11 +84,11 @@ const Header = (props) => {
   );
 };
 
-const mapStateToPropsFunc = (state) => {
+const mapStateToProps = (state) => {
   console.log(">> MAP STATE", state);
   return {
     ...state,
   };
 };
 
-export default connect({ mapStateToProps: mapStateToPropsFunc })(Header);
+export default connect(mapStateToProps)(Header);
