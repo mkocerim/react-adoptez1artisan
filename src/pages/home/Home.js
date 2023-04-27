@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useApi from "../../components/Hooks/useApi";
 import Category from "./components/category";
 import { connect, useDispatch, useStore } from "react-redux";
+import { SET_TOKEN } from "../../store/reducers/authReducer/authReducer";
 
 const Home = (props) => {
   const [categories, setCategories] = useState([]);
@@ -27,7 +28,7 @@ const Home = (props) => {
 
   const onChange = (e) => {
     dispatch({
-      type: "set_token",
+      type: SET_TOKEN,
       payload: {
         token: e.target.value,
       },
