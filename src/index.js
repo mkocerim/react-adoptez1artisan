@@ -1,4 +1,4 @@
-import React from "react";
+import React gäfrom "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
